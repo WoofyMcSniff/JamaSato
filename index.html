@@ -34,38 +34,10 @@
 
 		<div id="searchdiv">
 			<input type="text" id"search" autocomplete"off" />
+			<button id="myButton">Search</button>
+
+
 <p id="output"></p>
-
-				<script type="text/javascript">
-						$(document).ready(function(){
-    					$('#search').on('keyup', function(){
-        					$.ajax({
-            				type: "GET",
-            				url: "test.xml",					 Hier Pfad auf Server zu XML Daten
-            				dataType: "xml",
-            				success: parseXML
-        								});
-    									});
-										});
-										function parseXML(xml){
-    								var searchFor = $('#search').val();
-    								var reg = new RegExp(searchFor, "i");
-    									$(xml).find('entry').each(function(){
-        								var title = $(this).find('title').text();
-        								var titleSearch = title.search(reg);
-        								var desc = $(this).find('description').text();
-        								var descSearch = desc.search(reg);
-        								$('#output').empty();
-        								if(titleSearch > -1){
-            								$('#output').append('Found <i>'+searchFor+'<\/i> in title: '+title.replace(reg, '<b>'+searchFor+'</b>')+'<br \/>');
-        								}
-        								if(descSearch > -1){
-            								$('#output').append('Found <i>'+searchFor+'<\/i> in description: '+desc.replace(reg, '<b>'+searchFor+'</b>')+'<br \/>');
-        										}
-    										});
-										}
-				</script>
-
 
 
 		</div>
