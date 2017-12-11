@@ -1,101 +1,87 @@
-<!DOCTYPE html>
-<html lang="de">
+<html !DOCTYPE>
 <head>
+    <title>Bootstrap 3 Collapsible Sidebar</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+      integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+      crossorigin=""/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+    crossorigin="">
+    </script>
 
-<link rel="stylesheet" type="text/css" href="css/design.css">
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="Malte Tiemann">
+    <!-- Leaflet Draw JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
-    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
-    crossorigin=""/>
+    <!-- Leaflet Draw CSS -->
+    <link rel"stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css"/>
 
 
-  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
-  integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
-  crossorigin="">
-  </script>
-
-<title>Jamasato</title>
 
 </head>
-
 <body>
-	<div id="wrapperdiv"><!-- ohne Inhalt -->
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <!-- Bootstrap Js CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- sidebar.js -->
+  <script src="js/sidebarJS.js"></script>
 
-		<div id="headerdiv">
+<div class="wrapper">
 
-			<img id="logo" src="img/logo.png" alt="Jamasato" >
+      <!-- Sidebar -->
+        <nav id="sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <h1>Sidebar</h1>
+            </div>
+            <div class="sidebar-header">
+            <h3>Search for locations</h3>
+          </div>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </span>
+            </div>
 
-		</div>
+            <div class="sidebar-header">
+            <h3>Pick a date</h3>
+          </div>
+            <div class="input-daterange input-group" id="datepicker">
 
-		<div id="searchdiv">
-			<input type="text" id"search" autocomplete"off" />
-			<button id="myButton">Search</button>
+                <input type="text" class="input-sm form-control" name="start" />
+                <span class="input-group-addon">to</span>
+                <input type="text" class="input-sm form-control" name="end" />
+            </div>
+        </nav>
+
+      <!-- Page Content -->
+      <div id="content">
+
+          <!-- Button to open and close Sidebar -->
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="glyphicon glyphicon-align-left"></i>
+              Toggle Sidebar
+            </button>
 
 
-<p id="output"></p>
+        <!--Embedding Map -->
+        <div id="myMap">
+          <script type="text/javascript" src="js/leafletembed.js"></script>
+        </div>
 
+      </div>
 
-		</div>
-
-		<div id="contentdiv">
-
-			<div id="mapid" >
-			<script type="text/javascript" src="js/leafletembed.js"></script>
-			</div>
-			<div id="banddiv">
-			<form action="">
-	  		<select name="kanal">
-	    		<option value="kanal1">Kanal 1</option>
-	    		<option value="kanal2">Kanal 2</option>
-	    		<option value="kanal3">Kanal 3</option>
-					<option value="kanal4">Kanal 4</option>
-					<option value="kanal5">Kanal 5</option>
-					<option value="kanal6">Kanal 6</option>
-	  		</select>
-
-					<div id="slidecontainer">
-  					<input type="range" min="1" max="100" value="50">
-					</div>
-
-				<select name="kanal">
-					<option value="kanal1">Kanal 1</option>
-					<option value="kanal2">Kanal 2</option>
-					<option value="kanal3">Kanal 3</option>
-					<option value="kanal4">Kanal 4</option>
-					<option value="kanal5">Kanal 5</option>
-					<option value="kanal6">Kanal 6</option>
-				</select>
-
-				<div id="slidecontainer">
-					<input type="range" min="1" max="100" value="50">
-				</div>
-
-				<select name="kanal">
-					<option value="kanal1">Kanal 1</option>
-					<option value="kanal2">Kanal 2</option>
-					<option value="kanal3">Kanal 3</option>
-					<option value="kanal4">Kanal 4</option>
-					<option value="kanal5">Kanal 5</option>
-					<option value="kanal6">Kanal 6</option>
-				</select>
-
-				<div id="slidecontainer">
-					<input type="range" min="1" max="100" value="50">
-				</div>
-	  		<input type="submit">
-			</form>
 </div>
-		</div>
 
-		<div id="footerdiv">Impressum und son Quatsch
-
-		</div>
-
-	</div>
 </body>
 </html>
