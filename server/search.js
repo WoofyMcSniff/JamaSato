@@ -3,50 +3,164 @@ var exports = module.exports = {};
 /**
  *@return
  */
+exports.search = function (input)
+{
+    var mainFolderPath = "C:\\Users\\Emma\\Documents\\Uni\\WiSe17\\Geosoftware2\\exampleData";
+    var i = 0;
+    var liste = [];
+    var erg = [];
+    switch(_tofind(input))
+    {
+        case 1:
+            while(i < liste.length-1)
+            {
+                if(_searchname(JSON.parse(liste[i]), input[0]))
+                {
+                    erg.push(liste[i]);
+                }
+                i++;
+            }
 
-exports.search = function (searchinput, JSon) {
-    console.log('search started');
-    console.log(searchinput);
-    var Jsonobject = JSON.parse(JSon);
+            break;
+
+        case 2:
+            while(i < liste.length-1)
+            {
+                if(_searchdatum(JSON.parse(liste[i]), input[1]))
+                {
+                    erg.push(liste[i]);
+                }
+                i++;
+            }
+
+            break;
+
+        case 3:
+            while(i < liste.length-1)
+            {
+                if(_searchbox(JSON.parse(liste[i]), input[2]))
+                {
+                    erg.push(liste[i]);
+                }
+                i++;
+            }
+
+            break;
+
+        case 4:
+            while(i < liste.length-1)
+            {
+                if(_searchname(JSON.parse(liste[i]), input[0]))
+                {
+                    if(_searchdatum(JSON.parse(liste[i]), input[1]))
+                    {
+                        erg.push(liste[i]);
+                    }
+                }
+                i++;
+            }
+
+            break;
+
+        case 5:
+            while(i < liste.length-1)
+            {
+                if(_searchname(JSON.parse(liste[i]), input[0]))
+                {
+                    if(_searchbox(JSON.parse(liste[i]), input[2]))
+                    {
+                        erg.push(liste[i]);
+                    }
+                }
+                i++;
+            }
+
+            break;
+
+        case 6:
+
+            while(i < liste.length-1)
+            {
+                if(_searchdatum(JSON.parse(liste[i]), input[1]))
+                {
+                    if(_searchbox(JSON.parse(liste[i]), input[2]))
+                    {
+                        erg.push(liste[i]);
+                    }
+                }
+                i++;
+            }
+
+            break;
+
+        case 7:
+            while(i < liste.length-1)
+            {
+                if(_searchname(JSON.parse(liste[i]), input[0]))
+                {
+                    if(_searchdatum(JSON.parse(liste[i]), input[1]))
+                    {
+                        if(_searchbox(JSON.parse(liste[i]), input[2]))
+                            erg.push(liste[i]);
+                    }
+                }
+                i++;
+            }
+
+            break;
+
+        default:
+
+
+    }
+
+    return erg;
+
+
+}
+function _tofind(searchinput)
+{
     if (searchinput[0] != null && searchinput[1] == null && searchinput[2] == null) {
-        return _searchname(Jsonobject, searchinput[0]); //Name
+        return 1 //Name
     }
 
     else if (searchinput[0] != null && searchinput[1] != null && searchinput[2] != null) {
-        return (_searchdatum(Jsonobject, searchinput[1])); //Datum
+        return 2 //Datum
     }
 
     else if (searchinput[0] == null && searchinput[1] != null && searchinput[2] != null) {
-        return (_searchbox(Jsonobject, searchinput[2])); //Box
+        return 3; //Box
     }
 
     else if (searchinput[0] != null && searchinput[1] != null && searchinput[2] == null) {
-        return (_searchname(Jsonobject, searchinput[0]) && _searchdatum(Jsonobject, searchinput[1])); // Name + Datum
+        return 4; // Name + Datum
     }
 
     else if (searchinput[0] != null && searchinput[1] == null && searchinput[2] != null) {
-        return (_searchname(Jsonobject, searchinput[0]) && _searchbox(Jsonobject, searchinput[2])); //Name + Box
+        return 5; //Name + Box
     }
 
     else if (searchinput[0] == null && searchinput[1] != null && searchinput[2] != null) {
-        return (_searchdatum(Jsonobject, searchinput[1]) && _searchbox(Jsonobject, searchinput[2])); // Datum + Box
+        return 6; // Datum + Box
     }
 
     else if (searchinput[0] != null && searchinput[1] != null && searchinput[2] != null) {
-        return (_searchname(Jsonobject, searchinput[0]) && _searchdatum(Jsonobject, searchinput[1]) && _searchbox(Jsonobject, searchinput[2])); //Name + Datum + Box
+        return 7; //Name + Datum + Box
     }
 
-    else {
-        throw 'No given data';
-    }
+
+
 }
 
-function _searchname(Json, name) {
+function _searchname(Json, name)
+{
     return Json.description.contains(name);
 }
 
-function _searchdatum(Json, date) {
-    if (_stringToDate(Json.DATATAKE_1_DATATAKE_SENSING_START.substring(0, 10), "yyyy/mm/dd", "-").getTime() == date.getTime()) {
+function _searchdatum(Json, date)
+{
+    if (_stringToDate(Json.DATATAKE_1_DATATAKE_SENSING_START.substring(0, 10), "yyyy/mm/dd", "-").getTime() == date.getTime())
+    {
         return true;
     }
 }
@@ -56,12 +170,13 @@ function _searchdatum(Json, date) {
  *npm install polygon, die node.js libary für polygone
  *Copyright (c) <2017> <tmpvar>
  */
-function _searchbox(Json, box) {
+function _searchbox(Json, box)
+{
 
     var such = new Polygon(box);
     var punkte = Json.FOOTPRINT;
     var current = new Polygon(punkte);
-    return current.union(such).toArray[0, 0] != null;
+    return current.union(such).toArray[0,0] != null;
 
 }
 
