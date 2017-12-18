@@ -124,11 +124,11 @@ function _tofind(searchinput)
         return 1 //Name
     }
 
-    else if (searchinput[0] != null && searchinput[1] != null && searchinput[2] != null) {
+    else if (searchinput[0] == null && searchinput[1] != null && searchinput[2] == null) {
         return 2 //Datum
     }
 
-    else if (searchinput[0] == null && searchinput[1] != null && searchinput[2] != null) {
+    else if (searchinput[0] == null && searchinput[1] == null && searchinput[2] != null) {
         return 3; //Box
     }
 
