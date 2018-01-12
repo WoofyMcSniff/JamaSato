@@ -18,8 +18,9 @@ function sortdate(liste)
  */
 function _getdatum(liste)
 {
-    Json = JSON.pase(_getJson);
-    _stringtoDate(Json.DATATAKE_1_DATATAKE_SENSING_START.substring(0, 10), "YYYY/mm/dd", "-").parse()
+    var st = Json.metadata[''].DATATAKE_1_DATATAKE_SENSING_START;
+    var dt = new Date(st);
+
 }
 
 /**
@@ -28,20 +29,4 @@ function _getdatum(liste)
 function _getjson()
 {
 
-}
-
-/**
- * von https://stackoverflow.com/questions/5619202/converting-string-to-date-in-js
- */
-function _stringToDate(_date, _format, _delimiter) {
-    var formatLowerCase = _format.toLowerCase();
-    var formatItems = formatLowerCase.split(_delimiter);
-    var dateItems = _date.split(_delimiter);
-    var monthIndex = formatItems.indexOf("mm");
-    var dayIndex = formatItems.indexOf("dd");
-    var yearIndex = formatItems.indexOf("yyyy");
-    var month = parseInt(dateItems[monthIndex]);
-    month -= 1;
-    var formatedDate = new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
-    return formatedDate;
 }

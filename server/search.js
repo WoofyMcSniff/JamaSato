@@ -1,5 +1,6 @@
 var exports = module.exports = {};
 
+
 /**
  *@return
  */
@@ -9,14 +10,18 @@ exports.search = function (input)
     var i = 0;
     var liste = [];
     var erg = [];
+    var h = 0;
+    var Jsonarray =
+    while(h < Jsonarray.length)
     switch(_tofind(input))
     {
         case 1:
-            while(i < liste.length-1)
+            while(i < liste.length)
             {
-                if(_searchname(JSON.parse(liste[i]), input[0]))
+                var Json = liste[i].parse();
+                if(_searchname(Json, input[0]))
                 {
-                    erg.push(liste[i]);
+                    erg.push(Json.description);
                 }
                 i++;
             }
@@ -24,11 +29,12 @@ exports.search = function (input)
             break;
 
         case 2:
-            while(i < liste.length-1)
+            while(i < liste.length)
             {
-                if(_searchdatum(JSON.parse(liste[i]), input[1], input[2]))
+                var Json = liste[i].parse();
+                if(_searchdatum(Json, input[1], input[2]))
                 {
-                    erg.push(liste[i]);
+                    erg.push(Json.description);
                 }
                 i++;
             }
@@ -36,11 +42,12 @@ exports.search = function (input)
             break;
 
         case 3:
-            while(i < liste.length-1)
+            while(i < liste.length)
             {
-                if(_searchbox(JSON.parse(liste[i]), input[3]))
+                var Json = liste[i].parse();
+                if(_searchbox(Json, input[3]))
                 {
-                    erg.push(liste[i]);
+                    erg.push(Json.description);
                 }
                 i++;
             }
@@ -48,13 +55,15 @@ exports.search = function (input)
             break;
 
         case 4:
-            while(i < liste.length-1)
+            while(i < liste.length)
             {
-                if(_searchname(JSON.parse(liste[i]), input[0]))
+
+                var Json = liste[i].parse();
+                if(_searchname(Json, input[0]))
                 {
-                    if(_searchdatum(JSON.parse(liste[i]), input[1], input[2]))
+                    if(_searchdatum(Json, input[1], input[2]))
                     {
-                        erg.push(liste[i]);
+                        erg.push(Json.description);
                     }
                 }
                 i++;
@@ -63,13 +72,14 @@ exports.search = function (input)
             break;
 
         case 5:
-            while(i < liste.length-1)
+            while(i < liste.length)
             {
-                if(_searchname(JSON.parse(liste[i]), input[0]))
+                var Json = liste[i].parse();
+                if(_searchname(Json, input[0]))
                 {
-                    if(_searchbox(JSON.parse(liste[i]), input[3]))
+                    if(_searchbox(Json, input[3]))
                     {
-                        erg.push(liste[i]);
+                        erg.push(Json.description);
                     }
                 }
                 i++;
@@ -79,13 +89,14 @@ exports.search = function (input)
 
         case 6:
 
-            while(i < liste.length-1)
+            while(i < liste.length)
             {
-                if(_searchdatum(JSON.parse(liste[i]), input[1], input[2]))
+                var Json = liste[i].parse();
+                if(_searchdatum(Json, input[1], input[2]))
                 {
-                    if(_searchbox(JSON.parse(liste[i]), input[3]))
+                    if(_searchbox(Json, input[3]))
                     {
-                        erg.push(liste[i]);
+                        erg.push(Json.description);
                     }
                 }
                 i++;
@@ -94,14 +105,17 @@ exports.search = function (input)
             break;
 
         case 7:
-            while(i < liste.length-1)
+            while(i < liste.length)
             {
-                if(_searchname(JSON.parse(liste[i]), input[0]))
+                var Json = liste[i].parse();
+                if(_searchname(Json, input[0]))
                 {
-                    if(_searchdatum(JSON.parse(liste[i]), input[1], input[2]))
+                    if(_searchdatum(Json, input[1], input[2]))
                     {
-                        if(_searchbox(JSON.parse(liste[i]), input[3]))
-                            erg.push(liste[i]);
+                        if(_searchbox(Json, input[3]))
+                        {
+                            erg.push(Json.description);
+                        }
                     }
                 }
                 i++;
@@ -154,7 +168,8 @@ function _tofind(searchinput)
 
 function _searchname(Json, name)
 {
-    return Json.description.contains(name);
+    var h = Json.description;
+    return h.includes(name);
 }
 
 function _searchdatum(Json, datestart, dateend)
@@ -200,6 +215,7 @@ function _searchbox(Json, box)
 
 function _polygonstringtoarray(emptys)
 {
+    var liste = [];
     emptys = emptys.substring(9, emptys.length - 2);
     var count = emptys.split(",");
     var i = 0;
