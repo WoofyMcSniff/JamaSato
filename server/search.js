@@ -239,9 +239,9 @@ function _getjson(Json)
     var place =  help3[0] + " " + help3[1];
     place = place.toString();
 
-    var erg = JSON.stringify({ "name": Json.metadata[''].PRODUCT_URI,
+    var erg = JSON.stringify({data:[{ "name": Json.metadata[''].PRODUCT_URI,
         "date": Json.metadata[''].DATATAKE_1_DATATAKE_SENSING_START,
-        "location": place});
+        "location": place}], "saveplace" : Json.description});
     return erg;
 }
 
