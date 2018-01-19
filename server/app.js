@@ -37,11 +37,16 @@ app.route('/')
  * @return metadata or error
  */
 app.post('/search', function (req, res) {
-    console.log('searching for ' + req.body.searchparams);
-    var searchparams = req.body.searchparams;
+    console.log('searching for ' + req.body.searchInput);
+    var searchString = req.body.searchInput;
+    var fromDate = req.body.fromDate;
+    var toDate = req.body.toDate;
+    var coords = req.body.coords;
+    var searchparams = [searchString, fromDate, toDate, coords];
     search.search(searchparams);
     res.redirect('/');
-})
+
+});
 
 
 /**
@@ -70,7 +75,7 @@ app.use(function (err, req, res, next) {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     // render the error page
     res.status(err.status || 500);
-    res.send('error');
+    res.send('Hello');
 });
 
 
