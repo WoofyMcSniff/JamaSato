@@ -4,6 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var search = require('./search.js');
+var createLayer = require('./creatingLayer.js');
 
 //var index = require('./index.js');
 
@@ -37,13 +38,30 @@ app.route('/')
  * @return metadata or error
  */
 app.post('/search', function (req, res) {
-    console.log('searching for ' + req.body.searchInput);
     var searchString = req.body.searchInput;
     var fromDate = req.body.fromDate;
     var toDate = req.body.toDate;
     var coords = req.body.coords;
     var searchparams = [searchString, fromDate, toDate, coords];
     search.search(searchparams);
+    res.redirect('/');
+});
+
+
+/**
+ * @desc AJAX.POST on server for sending a search request
+ *       takes an array with search parameters via POST,
+ *       and passes them to the search function
+ *       url format: /search
+ * @return metadata or error
+ */
+app.post('/chooseBands', function (req, res) {
+    var red = req.body.red;
+    var green = req.body.green;
+    var blue = req.body.blue;
+    var bands = [red, green, blue];
+    console.log(bands);
+    createLayer.createLayer()
     res.redirect('/');
 
 });
