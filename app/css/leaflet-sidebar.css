@@ -199,6 +199,17 @@
   .sidebar-right.collapsed ~ .sidebar-map .leaflet-right {
     right: 50px; } }
 
+
+table, th, td
+    {
+        margin:5px 0;
+        padding:2px 4px;
+        font:9px Tahoma;
+    }
+th {
+        font-weight:bold;
+    }
+
 /*Slider CSS*/
 .slider {
   -webkit-appearance: none;
