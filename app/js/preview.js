@@ -12,7 +12,9 @@ var previewStyle = {
 
 function addPreview(index) {  //index of metadata entry
     var jsondata = $.getJSON("../json/metadata.json", function (json) {
+
         polygonString = json[1].metadata[''].FOOTPRINT;  //change 1 here to index
+
         return polygonString
     });
     jsondata.promise().done(function () {

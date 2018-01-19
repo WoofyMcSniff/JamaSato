@@ -1,6 +1,7 @@
 var map = L.map('map');
+
 map.setView([51.2, 7], 9);
-/*addPreview(); */
+
 
 var whiteAndBlack =
         L.tileLayer('//{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
@@ -17,6 +18,7 @@ var whiteAndBlack =
             attribution: 'Map data &copy; OpenStreetMap contributors'
         }).addTo(map);
 
+
 var lyr = L.tileLayer('./{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: ""});
 
 var baseMaps = {
@@ -29,6 +31,7 @@ var overlaymaps = {
 }
 
 L.control.layers(baseMaps, overlaymaps).addTo(map);
+
 
 var sidebar = L.control.sidebar('sidebar').addTo(map);
 
@@ -49,7 +52,7 @@ var drawControl = new L.Control.Draw({
     }
 });
 
-//add event handlers for drawing on Map and save coordinates into an array 
+//add event handlers for drawing on Map and save coordinates into an array
 
 var recCoord;
 map.on(L.Draw.Event.CREATED, function (e) {
@@ -62,9 +65,14 @@ map.on(L.Draw.Event.CREATED, function (e) {
 
     drawnItems.addLayer(layer);
     if (type === 'rectangle') {
-        recCoord = layer._latlngs[0];
+    recCoord = JSON.stringify(layer._latlngs[0]);
+        recCoord = recCoord.replace(/{"lat":/g, '');
+        recCoord = recCoord.replace(/"lng":/g, '');
+        recCoord = recCoord.replace(/}/g, '');
 
-    }
+   }
+   document.getElementById("coords").value = recCoord;
+
     console.log(recCoord)
 
 });
@@ -72,7 +80,7 @@ map.on(L.Draw.Event.CREATED, function (e) {
 
 map.addControl(drawControl);
 
-var toolbar = L.Toolbar();
+var toolbar = L.Toolbar(); //was ist das hier für eine Toolbar??
 toolbar.addToolbar(map);
 
 var modifiedDraw = L.drawLocal.extend({

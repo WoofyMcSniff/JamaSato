@@ -12,23 +12,22 @@
 
     <!-- Front Awesome & Leaftlet & Leaflet Draw -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.css"/>
 
     <!-- sidebar CSS -->
-    <link rel="stylesheet" href="../css/leaflet-sidebar.css" />
-
-    <!-- MrJSONTable JS -->
-    <script src="/mrjsontable/scripts/mrjsontable.js"></script>
-    <link href="/mrjsontable/css/mrjsontable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/leaflet-sidebar.css"/>
 
     <!-- DataTable JQuery -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.4/css/select.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/select/1.2.4/css/select.dataTables.min.css"/>
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.4/js/dataTables.select.min.js"></script>
 
     <style>
@@ -49,112 +48,88 @@
     </style>
 </head>
 <body>
-    <div id="sidebar" class="sidebar collapsed">
-        <!-- Nav tabs -->
-        <div class="sidebar-tabs">
-            <ul role="tablist">
-                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-                <!-- <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li> -->
-                <!-- <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li> -->
-                <!-- <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li> -->
-            </ul>
+<div id="sidebar" class="sidebar collapsed">
+    <!-- Nav tabs -->
+    <div class="sidebar-tabs">
+        <ul role="tablist">
+            <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+            <!-- <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li> -->
+            <!-- <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li> -->
+            <!-- <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li> -->
+        </ul>
 
-            <ul role="tablist">
-                <!-- <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li> -->
-            </ul>
-        </div>
-
-        <!-- Tab panes -->
-        <div class="sidebar-content">
-            <div class="sidebar-pane" id="home">
-                <h1 class="sidebar-header">
-                    JamaSato
-                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-                </h1>
-                <p> Search
-
-                <p>
-                  <div id="searchBox">
-                      <form name="searchForm">
-                        <div>
-                          <input name="searchfield" type="search" size="30" maxlength="30">
-                        </div>
-                      </form>
-                  </div>
-                  <!-- <button onclick="searchString()">Click</button> -->
-                  <button onCLick="tableButton()">Click</button>
-                </p>
-
-
-
-                <p>Please enter starting and ending dates</p>
-
-                <p>    <input type="date" id="fromDate">
-                       <input type="date" id="toDate">
-                       <button onclick="setDate()">Click</button>
-                       <!-- <button onclick="onLoad()">Click create</button> -->
-
-                </p>
-                <p>Please draw a rectangle</p>
-                <p>
-                <button type="button" class="btn" id="btnRectangle" onClick="search()"> Click </button>
-                </p>
-
-                <p id="drawinfo"> </p>
-                <p id="testparse"> </p>
-
-                <p>
-
-
-    <table id="example" class="display" width="100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>name</th>
-                <th>date</th>
-                <th>location</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-              <th>name</th>
-              <th>date</th>
-              <th>location</th>
-            </tr>
-        </tfoot>
-    </table>
-<!--
-                  <div id="showData"></div>
--->
-                  <script src="../js/createtable.js"></script>
-
-                </p>
-
-            </div>
-
-            <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>
-
-            <div class="sidebar-pane" id="messages">
-                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>
-
-            <div class="sidebar-pane" id="settings">
-                <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>
-        </div>
+        <ul role="tablist">
+            <!-- <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li> -->
+        </ul>
     </div>
 
-    <div id="map" class="sidebar-map"></div>
+    <!-- Tab panes -->
+    <div class="sidebar-content">
+        <div class="sidebar-pane" id="home">
+            <h1 class="sidebar-header">
+                JamaSato
+                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+            </h1>
+            <p> Search </p>
 
-    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-    <script src="../js/leaflet-sidebar.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
-    <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
-    <script src="../js/preview.js"></script>
-    <script src="../js/leafletembed.js"></script>
-    <script src="../js/setDate.js"></script>
-    <script src="../js/JSONparse.js"></script>
+            <div>
+                <div id="searchBox">
+                    <form action="/search" method="post">
+                        <input type="text" name="searchInput"> <br>
+                        <p>Please enter starting and ending dates</p> <br>
+                        <input type="date" name="fromDate">
+                        <input type="date" name="toDate"> <br>
+                        <input type="hidden" id="coords" name="coords"> <br>
+                        <p>If you like to do a spacial search, please draw a rectangle.</p>
+                        <button type="submit" onCLick="tableButton()">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+            <table id="example" class="display" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>date</th>
+                    <th>location</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>name</th>
+                    <th>date</th>
+                    <th>location</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+
+        <div class="sidebar-pane" id="profile">
+            <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        </div>
+
+        <div class="sidebar-pane" id="messages">
+            <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        </div>
+        <div class="sidebar-pane" id="settings">
+            <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        </div>
+    </div>
+</div>
+<div id="map" class="sidebar-map"></div>
+
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<script src="../js/leaflet-sidebar.js"></script>
+<script src="../js/createtable.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
+<script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
+<script src="../js/createtable.js"></script>
+<script src="../js/preview.js"></script>
+<script src="../js/leafletembed.js"></script>
+<script src="../js/setDate.js"></script>
+<script src="../js/JSONparse.js"></script>
+
 
 </body>
 </html>
