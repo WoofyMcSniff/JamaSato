@@ -13,22 +13,34 @@ var app = express();
 app.use(express.static("../server"));
 app.use(express.static("../app"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: true}));
 //app.use(express.static(""));  //hier Pfad zu metadaten einfügen
 app.use(logger('combined'));
 
+/* http routing. */
+// log code which is executed on every request
+app.use(function (req, res, next) {
+    console.log(req.method + ' ' + req.url + ' was requested by ' + req.connection.remoteAddress);
+    res.header('Access-Control-Allow-Origin', '*'); // allow CORS
+    next();
+});
 
-app.route('/')
+app.route('/:erg')
     .get(function (req, res) {  //sends index.html
         console.log('accessing homepage');
-        res.sendFile('index.html');
-    })
-    .post(function (req, res) {
-        //console.log('searching for ' + req.body.searchparams);
-        // var searchparams = req.body.searchparams;
+        res.render('index.html');
+        var erg = res.params.erg;
+        console.log(erg);
+        //req.session.erg = null;
+    });
+    /*.post(function (req, res) {
+        console.log('searching for ' + req.body.searchparams);
+        var searchparams = req.body.searchparams;
         console.log('1');
         res.redirect('/');
-    });
+    });*/
+
+
 
 /**
  * @desc AJAX.POST on server for sending a search request
@@ -43,10 +55,17 @@ app.post('/search', function (req, res) {
     var toDate = req.body.toDate;
     var coords = req.body.coords;
     var searchparams = [searchString, fromDate, toDate, coords];
-    search.search(searchparams);
-    res.redirect('/');
+    var erg = JSON.stringify(search.search(searchparams));
+    console.log("passing json");
+    res.json(erg);
+    res.redirect('/'); //+ encodeURIComponent(erg));
 });
 
+
+app.get('/search/:erg', function (req, res) {   //anschauen, wie die weitergabe funktioniert
+    console.log("received");
+    res.render('index.html');
+});
 
 /**
  * @desc AJAX.POST on server for sending a search request
@@ -61,7 +80,7 @@ app.post('/chooseBands', function (req, res) {
     var blue = req.body.blue;
     var bands = [red, green, blue];
     console.log(bands);
-    createLayer.createLayer()
+    createLayer.createLayer();
     res.redirect('/');
 
 });
@@ -93,7 +112,7 @@ app.use(function (err, req, res, next) {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     // render the error page
     res.status(err.status || 500);
-    res.send('Hello');
+    res.send('Error Status 500');
 });
 
 
