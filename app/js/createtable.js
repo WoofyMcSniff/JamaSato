@@ -1,5 +1,6 @@
 var searchdata;
 
+
 function tableButton(){
 
 
@@ -22,7 +23,7 @@ function tableButton(){
 }
 
 function layertomap(croppedData) {
-    var pathbase = './layer/' + croppedData
+    var pathbase = './layer/' + croppedData;
 
     console.log(pathbase);
 }
