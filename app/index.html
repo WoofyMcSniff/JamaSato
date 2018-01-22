@@ -18,6 +18,18 @@
     <!-- sidebar CSS -->
     <link rel="stylesheet" href="../css/leaflet-sidebar.css"/>
 
+    <!-- DataTable JQuery -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/select/1.2.4/css/select.dataTables.min.css"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.4/js/dataTables.select.min.js"></script>
+
     <style>
         body {
             padding: 0;
@@ -69,17 +81,30 @@
                         <input type="date" name="toDate"> <br>
                         <input type="hidden" id="coords" name="coords"> <br>
                         <p>If you like to do a spacial search, please draw a rectangle.</p>
-                        <button type="submit">Submit</button>
+                        <button type="submit" onCLick="tableButton()">Submit</button>
                     </form>
                 </div>
 
             </div>
 
-
-            <div id=searchoutput>  <!--Add table to this div -->
-            </div>
-
+            <table id="example" class="display" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>date</th>
+                    <th>location</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>name</th>
+                    <th>date</th>
+                    <th>location</th>
+                </tr>
+                </tfoot>
+            </table>
         </div>
+
 
         <div class="sidebar-pane" id="manipulation">
             <h1 class="sidebar-header">Layer Manipulation<span class="sidebar-close"><i
@@ -157,12 +182,12 @@
             <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
         </div>
 
+
         <div class="sidebar-pane" id="settings">
             <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
         </div>
     </div>
 </div>
-
 <div id="map" class="sidebar-map"></div>
 
 <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
@@ -170,11 +195,13 @@
 <script src="../js/createtable.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
 <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
+<script src="../js/createtable.js"></script>
 <script src="../js/preview.js"></script>
 <script src="../js/leafletembed.js"></script>
 <script src="../js/dataManipulationLeaflet.js"></script>
 <script src="../js/setDate.js"></script>
 <script src="../js/JSONparse.js"></script>
+
 
 </body>
 </html>

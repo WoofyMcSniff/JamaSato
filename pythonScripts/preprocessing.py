@@ -34,7 +34,7 @@ gdalWarpBase = ["gdalwarp", "-of", "GTiff"]
 imgFolderList = getImageFolder()
 
 
-for path, imgFolder in zip(outputPathBaseList,imgFolderList):
+for path, imgFolder in zip(outputPathBaseList, imgFolderList):
     for  img in  os.listdir(imgFolder):
         sourcepath = imgFolder + '/' + img
         outputpath = path + '/' + img
