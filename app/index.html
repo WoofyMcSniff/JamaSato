@@ -74,14 +74,14 @@
 
             <div>
                 <div id="searchBox">
-                    <form action="/search" method="post">
+                    <form id="searchform"> <!-- Die Get Funktion wird in der ready funktion deklariert-->
                         <input type="text" name="searchInput"> <br>
                         <p>Please enter starting and ending dates</p> <br>
                         <input type="date" name="fromDate">
                         <input type="date" name="toDate"> <br>
                         <input type="hidden" id="coords" name="coords"> <br>
                         <p>If you like to do a spacial search, please draw a rectangle.</p>
-                        <button type="submit" onCLick="tableButton()">Submit</button>
+                        <button type="submit">Submit</button>
                     </form>
                 </div>
 
@@ -201,6 +201,7 @@
 <script src="../js/dataManipulationLeaflet.js"></script>
 <script src="../js/setDate.js"></script>
 <script src="../js/JSONparse.js"></script>
+<script src="../js/index.js"></script>
 
 
 </body>

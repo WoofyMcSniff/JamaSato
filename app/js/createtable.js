@@ -1,25 +1,23 @@
 var searchdata;
 
 
-function tableButton(){
-
-
-    $('#example').DataTable( {
+function tableButton(res) {
+    $('#example').DataTable({
         searching: false,
         scrollX: true,
-        "ajax": "index.html/search",
+        "data": "res",
         "columns": [
-            { "data": "name" },
-            { "data": "date" },
-            { "data": "location" }
+            {"data": "name"},
+            {"data": "date"},
+            {"data": "location"}
         ]
-    } );
+    });
     $('#example').on('click', 'tr', function () {
         var datastring = this.outerText;
         var croppedData = datastring.substring(0, datastring.indexOf('.SAFE'));
         croppedData = croppedData + '.SAFE';
         layertomap(croppedData);
-    } );
+    });
 }
 
 function layertomap(croppedData) {

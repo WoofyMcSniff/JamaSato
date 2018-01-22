@@ -25,20 +25,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.route('/:erg')
-    .get(function (req, res) {  //sends index.html
-        console.log('accessing homepage');
-        res.render('index.html');
-        var erg = res.params.erg;
-        console.log(erg);
-        //req.session.erg = null;
-    });
-    /*.post(function (req, res) {
-        console.log('searching for ' + req.body.searchparams);
-        var searchparams = req.body.searchparams;
-        console.log('1');
-        res.redirect('/');
-    });*/
 
 
 
@@ -49,22 +35,17 @@ app.route('/:erg')
  *       url format: /search
  * @return metadata or error
  */
-app.post('/search', function (req, res) {
-    var searchString = req.body.searchInput;
-    var fromDate = req.body.fromDate;
-    var toDate = req.body.toDate;
-    var coords = req.body.coords;
+app.get('/search', function (req, res) {
+    console.log("asdfasdf");
+    var searchString = req.query.searchInput;
+    var fromDate = req.query.fromDate;
+    var toDate = req.query.toDate;
+    var coords = req.query.coords;
+    console.log("im here");
     var searchparams = [searchString, fromDate, toDate, coords];
     var erg = JSON.stringify(search.search(searchparams));
     console.log("passing json");
     res.json(erg);
-    res.redirect('/'); //+ encodeURIComponent(erg));
-});
-
-
-app.get('/search/:erg', function (req, res) {   //anschauen, wie die weitergabe funktioniert
-    console.log("received");
-    res.render('index.html');
 });
 
 /**
@@ -84,6 +65,21 @@ app.post('/chooseBands', function (req, res) {
     res.redirect('/');
 
 });
+
+app.route('/')
+    .get(function (req, res) {  //sends index.html
+        console.log('accessing homepage');
+        res.render('index.html');
+        var erg = res.params.erg;
+        console.log(erg);
+        //req.session.erg = null;
+    });
+/*.post(function (req, res) {
+    console.log('searching for ' + req.body.searchparams);
+    var searchparams = req.body.searchparams;
+    console.log('1');
+    res.redirect('/');
+});*/
 
 
 /**
