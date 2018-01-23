@@ -7,6 +7,7 @@ var exports = module.exports = {};
  */
 exports.search = function (input)
 {
+    console.log("suche beginnt");
     var i = 0;
     var liste = testing;
     var erg = [];
@@ -37,14 +38,18 @@ exports.search = function (input)
             break;
 
         case 3:
+            console.log("case 3 betreten")
             while (i < liste.length) {
                 var Json = liste[i];
+                console.log("whileschleife");
+                console.log( _searchbox(Json, input[3]));
                 if (_searchbox(Json, input[3])) {
                     erg.push(_getjson(Json));
+                    console.log("was gefunden");
                 }
                 i++;
             }
-
+            console.log("case3 abgeschossen");
             break;
 
         case 4:
@@ -230,7 +235,8 @@ function _searchdatum(Json, d1, d2)
  *npm install polygon, die node.js libary für polygone
  *Copyright (c) <2017> <tmpvar>
  */
-var poly = require('polygon');
+var Poly = require('polygon');
+var Vec2 = require('vec2');
 
 /**
  *
@@ -258,11 +264,24 @@ function _polygonstringtoarray1(footprint)
 
 function _polygonstringtoarray2(box)
 {
-
-        box.substring(1,box.length-1);
+        box = box.substring(1,box.length-1);
+        console.log(box);
         var boxliste = box.split(",");
-        var boxs =[[boxliste[0],boxliste[1]],[boxliste[2],boxliste[3]],[boxliste[4],boxliste[5]],[boxliste[6],boxliste[7]]];
-        return boxs;
+        console.log(boxliste);
+        var boxes =new Array(4);
+        for (var i = 0; i < boxes.length; i++)
+        {
+        boxes[i] = new Array(2);
+        }
+        boxes[0][0] = boxliste[0];
+        boxes[0][1] = boxliste[1];
+        boxes[1][0] = boxliste[2];
+        boxes[1][1] = boxliste[3];
+        boxes[2][0] = boxliste[4];
+        boxes[2][1] = boxliste[5];
+        boxes[3][0] = boxliste[6];
+        boxes[3][1] = boxliste[7];
+        return boxes;
 }
 
 
@@ -275,10 +294,15 @@ function _polygonstringtoarray2(box)
  */
 function _searchbox(Json, box)
 {
-
-    var such = new poly(_polygonstringtoarray2(box));
+    console.log("searchbox betreten");
     var punkte = Json.metadata[''].FOOTPRINT;
-    var current = new poly(_polygonstringtoarray1(punkte));
+    var current = new Poly(_polygonstringtoarray1(punkte));
+    var suchbox = _polygonstringtoarray2(box);
+    //console.log(suchbox);
+    //console.log(_polygonstringtoarray1(punkte));
+    var such = new Poly(suchbox);
+    console.log("gesuchte box " + such);
+    console.log(current.union(such));
     return current.union(such) != null;
 }
 
