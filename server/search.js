@@ -15,9 +15,9 @@ exports.search = function (input)
         case 1:
             while (i < liste.length) {
                 var Json = liste[i];
-                console.log(Json);
+                //console.log(Json);
                 if (_searchname(Json, input[0])) {
-                    console.log("i");
+                    //console.log("i");
                     erg.push(_getjson(Json));
                 }
                 i++;
@@ -107,7 +107,6 @@ exports.search = function (input)
 
 
     }
-
     return erg;
 
 
