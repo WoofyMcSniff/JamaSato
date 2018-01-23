@@ -161,8 +161,9 @@ function _tofind(searchinput)
  */
 function _searchname(Json, name)
 {
-    var h = Json.description;
-    return h.includes(name);
+    var h = _cutter(Json).description.toLowerCase();
+    var verg = name.toLowerCase();
+    return h.includes(verg);
 }
 
 
@@ -214,7 +215,8 @@ function _searchdatum(Json, d1, d2)
     var i = 0;
     while(i < dateliste.length)
     {
-        if (dt.getFullYear() == dateliste[i].getFullYear() && dt.getMonth() == dateliste[i].getMonth() && dt.getDate() == dateliste[i].getDate()) {
+        if (dt.getFullYear() == dateliste[i].getFullYear() && dt.getMonth() == dateliste[i].getMonth() && dt.getDate() == dateliste[i].getDate())
+        {
             return true;
         }
 
@@ -236,7 +238,7 @@ var poly = require('polygon');
  * @returns {a Array with the coordinats of the FOOTPINT}
  * @private
  */
-function _polygonstringtoarray(footprint)
+function _polygonstringtoarray1(footprint)
 {
     var liste = [];
     footprint = footprint.substring(9, footprint.length - 2);
@@ -253,6 +255,17 @@ function _polygonstringtoarray(footprint)
     return liste;
 
 }
+
+function _polygonstringtoarray2(box)
+{
+
+        box.substring(1,box.length-1);
+        var boxliste = box.split(",");
+        var boxs =[[boxliste[0],boxliste[1]],[boxliste[2],boxliste[3]],[boxliste[4],boxliste[5]],[boxliste[6],boxliste[7]]];
+        return boxs;
+}
+
+
 /**
  * LF00020
  * @param Json we are checking for the polygon
@@ -263,10 +276,10 @@ function _polygonstringtoarray(footprint)
 function _searchbox(Json, box)
 {
 
-    var such = new poly(box);
+    var such = new poly(_polygonstringtoarray2(box));
     var punkte = Json.metadata[''].FOOTPRINT;
-    var current = new poly(_polygonstringtoarray(punkte));
-    return current.union(such) != null
+    var current = new poly(_polygonstringtoarray1(punkte));
+    return current.union(such) != null;
 }
 
 
@@ -303,7 +316,7 @@ function _getjson(Json) {
 function _cutter(Json)
 {
     var help = Json.description;
-    var name =  help.substring(20, help.length - 20);
+    var name =  help.substring(20, help.length - 15);
     return name;
 }
 
