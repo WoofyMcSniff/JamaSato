@@ -1,5 +1,6 @@
 
-
+var currenturl = window.location.pathname;
+console.log(currenturl);
 
 $(document).ready(function() {
     //overwriting default submit funktion for the searchform
