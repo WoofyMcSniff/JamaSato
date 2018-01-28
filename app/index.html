@@ -87,7 +87,7 @@
 
             </div>
 
-            <table id="example" class="display" width="100%" cellspacing="0">
+            <table type="hidden" id="example" class="display" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th>date</th>
@@ -173,13 +173,11 @@
                             <option value="B10">Band 10</option>
                             <option value="B11">Band 11</option>
                             <option value="B12">Band 12</option>
-
                         </select>
                         <input type="number" min="0" max="255" id="bluevalue" name="bluevalue" value="0"></br>
                         <input type="checkbox" id="gray" name="graysacle" value="grayscale">
                         <label for="gray"> grayscale</label>
                         <input type="hidden" id="dir" name="dir" value=""> <br>
-                        </select></br>
                         <button type="submit">Submit</button>
                     </form>
                 </div>
@@ -204,8 +202,8 @@
 <script src="../js/createtable.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.13/leaflet.draw.js"></script>
 <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
-<script src="../js/createtable.js"></script>
 <script src="../js/preview.js"></script>
+<script src="../js/createtable.js"></script>
 <script src="../js/leafletembed.js"></script>
 <script src="../js/dataManipulationLeaflet.js"></script>
 <script src="../js/setDate.js"></script>
