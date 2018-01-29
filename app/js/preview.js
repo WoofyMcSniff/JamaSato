@@ -1,4 +1,3 @@
-
 var polygonString;
 
 var previewStyle = {
@@ -6,6 +5,7 @@ var previewStyle = {
     "weight": 5
 };
 
+//collecting necessary metadata to generate a footprint to display on the map
 function addPreview(res) {  //index of metadata entry
     for(var i = 0; i < res.length; i++) {
         if (res[i] !== undefined){
