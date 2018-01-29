@@ -17,6 +17,7 @@ exports.createLayer = function (red, green, blue, dir) {
             if (err) throw err;
             console.log('finished');
         })
+        return '/home/s_lech05/JamaSato/merged/mergedBandsLayer.png'
 };
 /**
   * @desc function to alter brighness of bands
@@ -37,4 +38,5 @@ exports.changeBrightness = function  (rvmin, rvmax, gvmin, gvmax, bvmin, bmax, p
               if (err) throw err;
               console.log('finished');
           })
+          return '/home/s_lech05/JamaSato/merged/mergedBandsLayer.png'
 }

@@ -6,7 +6,9 @@ var previewStyle = {
 };
 
 //collecting necessary metadata to generate a footprint to display on the map
-function addPreview(res) {  //index of metadata entry
+
+function addPreview(res) {
+  var polygonLayer = L.featureGroup([])
     for(var i = 0; i < res.length; i++) {
         if (res[i] !== undefined){
 
@@ -25,10 +27,14 @@ function addPreview(res) {  //index of metadata entry
             previewCoords.push(previewCorrdsPair);
             n++
         }
-        var polygon = L.polygon(previewCoords, {color: 'red'}).addTo(map);
+        var polygon = L.polygon(previewCoords, {color: 'red'})
+      polygonLayer.addLayer(polygon);
     }}
 
-
-
+    if(map.hasLayer(polygonLayer)){
+      map.removeLayer(polygonLayer)
+      polygonLayer.addTo(map);
+    } else {
+    polygonLayer.addTo(map);
+  }
 };
-
