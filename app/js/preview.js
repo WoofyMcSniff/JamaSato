@@ -1,3 +1,4 @@
+
 var polygonString;
 
 var previewStyle = {

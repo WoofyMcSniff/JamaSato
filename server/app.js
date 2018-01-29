@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 //app.use(express.static(""));  //hier Pfad zu metadaten einfügen
 app.use(logger('combined'));
+app.use('/layer', express.static('/home/s_lech05/JamaSato/layer'));
 
 /* http routing. */
 // log code which is executed on every request
@@ -29,40 +30,64 @@ app.use(function (req, res, next) {
 
 
 /**
- * @desc AJAX.POST on server for sending a search request
- *       takes an array with search parameters via POST,
+ * @desc AJAX.GET on server for sending a search request
+ *       takes an array with search parameters
  *       and passes them to the search function
  *       url format: /search
  * @return metadata or error
  */
 app.get('/search', function (req, res) {
-    console.log("asdfasdf");
     var searchString = req.query.searchInput;
     var fromDate = req.query.fromDate;
     var toDate = req.query.toDate;
     var coords = req.query.coords;
-    console.log("im here");
     var searchparams = [searchString, fromDate, toDate, coords];
-    var erg = JSON.stringify(search.search(searchparams));
-    console.log("passing json");
-    res.json(erg);
+    var erg = search.search(searchparams);
+    console.log(erg[0].footprint);
+    if(erg !== []){
+        res.json(erg);
+    } else res.send("nothing found")
+
 });
 
 /**
- * @desc AJAX.POST on server for sending a search request
- *       takes an array with search parameters via POST,
- *       and passes them to the search function
- *       url format: /search
- * @return metadata or error
+ * @desc AJAX.GET on server for getting merged Layer
+ *       takes an array with search BandIDs and Color Value,
+ *       and passes them to the creatingLayer function
+ *       url format: /chooseBands
+ * @return layerPath or error
  */
-app.post('/chooseBands', function (req, res) {
-    var red = req.body.red;
-    var green = req.body.green;
-    var blue = req.body.blue;
-    var bands = [red, green, blue];
-    console.log(bands);
-    createLayer.createLayer();
-    res.redirect('/');
+app.get('/chooseBands', function (req, res) {
+    var red = req.query.red;
+    var green = req.query.green;
+    var blue = req.query.blue;
+    var dir = req.query.dir;
+
+    var bandParams = [red, green, blue, redvaluemin, redvaluemax, greenvaluemin, greenvaluemax, bluevaluemin, bluevaluemax, dir];
+    createLayer.createLayer(bandParams);
+    //res.json(layer);
+
+});
+
+/**
+ * @desc AJAX.GET on server for getting merged Layer
+ *       takes an array with search BandIDs and Color Value,
+ *       and passes them to the creatingLayer function
+ *       url format: /chooseBands
+ * @return layerPath or error
+ */
+app.get('/brightness', function (req, res) {
+    var redvaluemin = req.query.redvaluemin;
+    var redvaluemax = req.query.redvaluemax;
+    var greenvaluemin = req.query.greenvaluemin;
+    var greenvaluemax = req.query.greenvaluemax;
+    var bluevaluemin = req.query.bluevaluemax;
+    var bluevaluemax = req.query.bluevaluemax;
+    var path = req.query.path;
+
+    var bandParams = [redvaluemin, redvaluemax, greenvaluemin, greenvaluemax, bluevaluemin, bluevaluemax, path];
+    createLayer.createLayer(bandParams);
+    //res.json(layer);
 
 });
 
