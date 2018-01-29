@@ -1,9 +1,7 @@
 var searchdata;
-
-/*function tableDestroy(table){
-    table.destroy();
-} */
+s
 function tableButton(res) {
+
 
     $('#example').DataTable({
         searching: false,
@@ -19,10 +17,19 @@ function tableButton(res) {
     });
 
     addPreview(res);
+
     $('#example').on('click', 'tr', function () {
+        var table = $('#example').DataTable();
         var datastring = this.children[1].innerText;
-        var pathbase = '/home/s_lech05/JamaSato/IMG/' + datastring;
-        $('#dir')[0].value = pathbase;
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+        layertomap(datastring);
+        console.log(datastring);
     });
 }
 
