@@ -1,5 +1,6 @@
 var searchdata;
-s
+var lyr;
+
 function tableButton(res) {
 
 
@@ -28,13 +29,16 @@ function tableButton(res) {
             table.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
-        layertomap(datastring);
-        console.log(datastring);
+        var pathbase = '/home/s_lech05/JamaSato/IMG/' + datastring;
+        $('#dir')[0].value = pathbase;
     });
 }
 
 function layertomap(res) {
-    layerpath = res.layerpath;
+    var path = res.lay
+
+    var varl  = 'http://gis-bigdata.uni-muenster.de:13014' +pathbase+ '/{z}/{x}/{y}.png'
+    var lyr = L.tileLayer(varl, {tms: true, opacity: 0.7, attribution: ""});
 
     /*map.on('click', function(ev) {
         alert(ev.latlng); // ev is an event object (MouseEvent in this case)
@@ -42,4 +46,9 @@ function layertomap(res) {
     //layerpath.addTo(map)
     //add eventListener to layer  http://leafletjs.com/reference-1.3.0.html#event-objects */
 
+}
+function createGrayscale(){
+  var bandId = document.getElementById('gray');
+  var pathBase = $('#dir')[0].value;
+  //adding grayscale Image here
 }

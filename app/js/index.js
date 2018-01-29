@@ -39,6 +39,9 @@ $(document).ready(function() {
     $('#bandform').submit(function(e) {
         e.preventDefault();
         var that = this;
+        if ($('#dir')[0].value === ""){
+             alert("Choose a Layer first!")
+          } else
         $.ajax({
             // catch custom response code.
             statusCode: {
@@ -68,6 +71,9 @@ $(document).ready(function() {
 
         e.preventDefault();
         var that = this;
+        if ($('#dir')[0].value === ""){
+             alert("Add a Layer first!")
+          } else
         $.ajax({
             // catch custom response code.
             statusCode: {

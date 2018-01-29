@@ -1,6 +1,6 @@
-function changeOpacity(layer){
+function changeOpacity(){
    var value = document.getElementById("opacityslider").value;
-   if(layer===undefined){
+   if(lyr===undefined){
       alert("Add a Layer first!")
    } else layer.setOpacity(value);
 };

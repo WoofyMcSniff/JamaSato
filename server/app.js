@@ -43,7 +43,6 @@ app.get('/search', function (req, res) {
     var coords = req.query.coords;
     var searchparams = [searchString, fromDate, toDate, coords];
     var erg = search.search(searchparams);
-    console.log(erg[0].footprint);
     if(erg !== []){
         res.json(erg);
     } else res.send("nothing found")
@@ -61,19 +60,21 @@ app.get('/chooseBands', function (req, res) {
     var red = req.query.red;
     var green = req.query.green;
     var blue = req.query.blue;
+    if(req.query.dir === undefined){
+      res.send("error")
+    }else {
     var dir = req.query.dir;
-
-    var bandParams = [red, green, blue, redvaluemin, redvaluemax, greenvaluemin, greenvaluemax, bluevaluemin, bluevaluemax, dir];
+    var bandParams = [red, green, blue, dir];
     createLayer.createLayer(bandParams);
-    //res.json(layer);
+    res.send(/home/s_lech05/JamaSato/merged/mergedBandsLayer.png)}
 
 });
 
 /**
- * @desc AJAX.GET on server for getting merged Layer
- *       takes an array with search BandIDs and Color Value,
- *       and passes them to the creatingLayer function
- *       url format: /chooseBands
+ * @desc AJAX.GET on server for getting alter Layer
+ *       takes an array with and Color Values,
+ *       and passes them to the changeBrightness function
+ *       url format: /brightness
  * @return layerPath or error
  */
 app.get('/brightness', function (req, res) {
@@ -83,14 +84,18 @@ app.get('/brightness', function (req, res) {
     var greenvaluemax = req.query.greenvaluemax;
     var bluevaluemin = req.query.bluevaluemax;
     var bluevaluemax = req.query.bluevaluemax;
-    var path = req.query.path;
 
-    var bandParams = [redvaluemin, redvaluemax, greenvaluemin, greenvaluemax, bluevaluemin, bluevaluemax, path];
-    createLayer.createLayer(bandParams);
+    var layerParams = [redvaluemin, redvaluemax, greenvaluemin, greenvaluemax, bluevaluemin, bluevaluemax];
+    createLayer.changeBrightness(layerParams);
     //res.json(layer);
 
 });
 
+/**
+ * @desc AJAX.GET to access homepage.
+ *
+ * @return renderes index.html or error
+**/
 app.route('/')
     .get(function (req, res) {  //sends index.html
         console.log('accessing homepage');
@@ -99,26 +104,8 @@ app.route('/')
         console.log(erg);
         //req.session.erg = null;
     });
-/*.post(function (req, res) {
-    console.log('searching for ' + req.body.searchparams);
-    var searchparams = req.body.searchparams;
-    console.log('1');
-    res.redirect('/');
-});*/
 
 
-/**
- * @desc AJAX.GET to access search.
- *       find all searched items and sends them client
- *       url format: /:searchparams
- * @return searchdata or error
-
- app.get('/:searchparams', function (req, res, next) {
-     //welche Parameter werden übergeben??
-
-    res.send('index', {output: req.params.searchparams})
-});
- */
 
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
