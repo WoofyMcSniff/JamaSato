@@ -4,9 +4,6 @@ var searchdata;
     table.destroy();
 } */
 function tableButton(res) {
-    res = JSON.stringify(res);
-    res = JSON.parse(res);
-    console.log(res);
 
     $('#example').DataTable({
         searching: false,
@@ -21,13 +18,21 @@ function tableButton(res) {
         "order": [[1, "desc"]]
     });
 
+    addPreview(res);
     $('#example').on('click', 'tr', function () {
         var datastring = this.children[1].innerText;
-        layertomap(datastring);
+        var pathbase = '/home/s_lech05/JamaSato/IMG/' + datastring;
+        $('#dir')[0].value = pathbase;
     });
 }
 
-function layertomap(datastring) {
-    var pathbase = '/home/s_lech05/JamaSato/IMG/' + datastring;
-    $('#dir')[0].value = pathbase;
+function layertomap(res) {
+    layerpath = res.layerpath;
+
+    /*map.on('click', function(ev) {
+        alert(ev.latlng); // ev is an event object (MouseEvent in this case)
+    });
+    //layerpath.addTo(map)
+    //add eventListener to layer  http://leafletjs.com/reference-1.3.0.html#event-objects */
+
 }

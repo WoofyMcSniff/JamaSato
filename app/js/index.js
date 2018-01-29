@@ -2,6 +2,12 @@
 
 
 $(document).ready(function() {
+  /**
+   * @desc AJAX.GET to overwrite submit of the searchform.
+   *       passes search parameters to the server
+   *       find all searched items and and passes them to the tableButton function
+   * @return searchdata  or error
+  **/
     $('#searchform').submit(function(e) {
         e.preventDefault();
         var that = this;
@@ -25,7 +31,11 @@ $(document).ready(function() {
             }
         });
     });
-
+    /**
+     * @desc AJAX.GET to overwrite submit of the choosebandform.
+     *       passes BandIds and path to the directory to the server
+     * @return path to layer or error
+    **/
     $('#bandform').submit(function(e) {
         e.preventDefault();
         var that = this;
@@ -49,8 +59,13 @@ $(document).ready(function() {
             }
         });
     });
-
+    /**
+     * @desc AJAX.GET to overwrite submit of the brighness form.
+     *       passes min and max colour values and path to the layer to the server
+     * @return path to layer or error
+    **/
     $('#manipulationForm').submit(function(e) {
+
         e.preventDefault();
         var that = this;
         $.ajax({
