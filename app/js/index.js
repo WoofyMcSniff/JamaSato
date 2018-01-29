@@ -11,6 +11,7 @@ $(document).ready(function() {
     $('#searchform').submit(function(e) {
         e.preventDefault();
         var that = this;
+
         $.ajax({
             // catch custom response code.
             statusCode: {
@@ -39,6 +40,9 @@ $(document).ready(function() {
     $('#bandform').submit(function(e) {
         e.preventDefault();
         var that = this;
+        if ($('#dir')[0].value === ""){
+              alert("Choose a Dataset first!")
+           } else {
         $.ajax({
             // catch custom response code.
             statusCode: {
@@ -58,7 +62,7 @@ $(document).ready(function() {
                 layertomap(res)
             }
         });
-    });
+    }});
     /**
      * @desc AJAX.GET to overwrite submit of the brighness form.
      *       passes min and max colour values and path to the layer to the server
@@ -68,6 +72,9 @@ $(document).ready(function() {
 
         e.preventDefault();
         var that = this;
+        if ($('#dir')[0].value === ""){
+              alert("Add a Layer first!")
+          } else {
         $.ajax({
             // catch custom response code.
             statusCode: {
@@ -87,6 +94,6 @@ $(document).ready(function() {
                 layertomap(res)
             }
         });
-    });
+    }});
 
 });

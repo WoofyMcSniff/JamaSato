@@ -18,9 +18,9 @@ var whiteAndBlack =
             attribution: 'Map data &copy; OpenStreetMap contributors'
         }).addTo(map);
 
-var varl  = 'http://gis-bigdata.uni-muenster.de:13014/layer/S2A_MSIL1C_20161212T082332_N0204_R121_T34KGD_20161212T084403.SAFE/T34KGD_20161212T082332_B01/{z}/{x}/{y}.png'
+/**var varl  = 'http://gis-bigdata.uni-muenster.de:13014/layer/S2A_MSIL1C_20161212T082332_N0204_R121_T34KGD_20161212T084403.SAFE/T34KGD_20161212T082332_B01/{z}/{x}/{y}.png'
 var lyr = L.tileLayer(varl, {tms: true, opacity: 0.7, attribution: ""});
-console.log(lyr);
+console.log(lyr);**/
 
 var baseMaps = {
     'Street Map': osm,
@@ -28,7 +28,7 @@ var baseMaps = {
 };
 
 var overlaymaps = {
-    "Layer": lyr
+    //"Layer": lyr
 }
 
 L.control.layers(baseMaps, overlaymaps).addTo(map);

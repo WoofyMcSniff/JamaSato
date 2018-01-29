@@ -52,7 +52,7 @@ app.get('/search', function (req, res) {
 
 /**
  * @desc AJAX.GET on server for getting merged Layer
- *       takes an array with search BandIDs and Color Value,
+ *       takes an array with search BandIDs and the path to directory,
  *       and passes them to the creatingLayer function
  *       url format: /chooseBands
  * @return layerPath or error
@@ -63,17 +63,17 @@ app.get('/chooseBands', function (req, res) {
     var blue = req.query.blue;
     var dir = req.query.dir;
 
-    var bandParams = [red, green, blue, redvaluemin, redvaluemax, greenvaluemin, greenvaluemax, bluevaluemin, bluevaluemax, dir];
-    createLayer.createLayer(bandParams);
-    //res.json(layer);
+    var bandParams = [red, green, blue, dir];
+    var layer = createLayer.createLayer(bandParams);
+    res.send(layer);
 
 });
 
 /**
  * @desc AJAX.GET on server for getting merged Layer
- *       takes an array with search BandIDs and Color Value,
- *       and passes them to the creatingLayer function
- *       url format: /chooseBands
+ *       takes an array with Color Values,
+ *       and passes them to the changeBrightness function
+ *       url format: /brightness
  * @return layerPath or error
  */
 app.get('/brightness', function (req, res) {
@@ -83,11 +83,9 @@ app.get('/brightness', function (req, res) {
     var greenvaluemax = req.query.greenvaluemax;
     var bluevaluemin = req.query.bluevaluemax;
     var bluevaluemax = req.query.bluevaluemax;
-    var path = req.query.path;
-
-    var bandParams = [redvaluemin, redvaluemax, greenvaluemin, greenvaluemax, bluevaluemin, bluevaluemax, path];
-    createLayer.createLayer(bandParams);
-    //res.json(layer);
+    var colorValues = [redvaluemin, redvaluemax, greenvaluemin, greenvaluemax, bluevaluemin, bluevaluemax];
+    var layer = createLayer.changeBrightness(colorValues);
+    res.send(layer);
 
 });
 
