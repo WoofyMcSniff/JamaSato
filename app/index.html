@@ -111,7 +111,7 @@
             <div>
                 <h3>Choose Bands for a RGB image</h3>
                 <div>
-                    <form id = "bandform" action="/chooseBands" method="get">
+                    <form id = "bandform" action="/chooseBands" method="post">
                         <label for="red">Red</label>
                         <select id="red" name="red">
                             <option value="B01">Band 1</option>
@@ -157,9 +157,6 @@
                             <option value="B11">Band 11</option>
                             <option value="B12">Band 12</option>
                         </select></br>
-                        <button type="submit">Submit</button>
-                      </form>
-                      <form id = "grayform">
                         <h3>Or choose band for a grayscale image</h3>
                         <div>
                         <select id="gray" name="gray">
@@ -177,7 +174,7 @@
                             <option value="B12">Band 12</option>
                         </select>
                         <input type="hidden" id="dir" name="dir" value=""> <br>
-                        <button onclick="createGrayscale()">Submit</button>
+                        <button type="submit">Submit</button>
                     </form>
                 </div>
             </div>
@@ -205,7 +202,7 @@
                         <label for="green">Choose Min and Max values forGreen</label>
                         <input type="number" min="0" max="255" id="greenvaluemin" name="greenvaluemin" value="0">
                         <input type="number" min="0" max="255" id="greenvaluemax" name="greenvaluemax" value="0"></br>
-                        <label for="blue">Choose Min and Max values for Blue</label>
+                        <label for="blue">Choose Min and Max values for Blue</label>>>>>>>> master
                         <input type="number" min="0" max="255" id="bluevaluemin" name="bluevaluemin" value="0">
                         <input type="number" min="0" max="255" id="bluevaluemax" name="bluevaluemax" value="0"></br>
                         <button type="submit">Submit</button>
